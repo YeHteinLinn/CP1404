@@ -1,0 +1,26 @@
+import os
+
+
+def main():
+    print("Starting directory is: {}".format(os.getcwd()))
+
+    os.chdir('FilesToSort/')
+
+    print("Files in {}:\n{}\n".format(os.getcwd(), os.listdir('.')))
+
+    for filename in os.listdir('.'):
+        if os.path.isdir(filename):
+            continue
+
+        extension = filename.split('.')[-1]
+
+        try:
+            os.mkdir(extension)
+        except FileExistsError:
+            pass
+
+        print("{}/{}".format(extension, filename))
+        os.rename(filename, "{}/{}".format(extension, filename))
+
+
+main()

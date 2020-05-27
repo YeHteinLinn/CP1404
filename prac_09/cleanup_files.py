@@ -33,7 +33,6 @@ def main():
         new_name = get_fixed_filename(filename)
         print("Renaming {} to {}".format(filename, new_name))
 
-
         # Option 1: rename file to new name - in place
         os.rename(filename, new_name)
 
@@ -43,7 +42,19 @@ def main():
 
 def get_fixed_filename(filename):
     """Return a 'fixed' version of filename."""
-    new_name = filename.replace(" ", "_").replace(".TXT", ".txt")
+    filename = filename.replace(" ", "_").replace(".TXT", ".txt")
+    new_name = ""
+    for current_index, current_letter in enumerate(filename):
+        previous_letter = filename[current_index - 1]
+        if previous_letter == "_" and current_letter.isalnum():
+            current_letter = current_letter.upper()
+        new_name = new_name + current_letter
+        if current_index < len(filename) - 1:
+            next_letter = filename[current_index + 1]
+
+            if current_letter.isalnum() and (next_letter.isupper() or next_letter.isdigit()):
+                new_name += "_"
+
     return new_name
 
 
@@ -55,7 +66,6 @@ def demo_walk():
         print("\tcontains subdirectories:", subdirectories)
         print("\tand files:", filenames)
         print("(Current working directory is: {})".format(os.getcwd()))
-
 
         try:
             os.mkdir('temp')

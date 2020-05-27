@@ -16,6 +16,8 @@ def main():
     # Print a list of all files in current directory
     print("Files in {}:\n{}\n".format(os.getcwd(), os.listdir('.')))
 
+
+
     # Make a new directory
     # The next time you run this, it will crash if the directory exists
 
@@ -33,7 +35,7 @@ def main():
         new_name = get_fixed_filename(filename)
         print("Renaming {} to {}".format(filename, new_name))
 
-        # TODO: Try these options one at a time
+
         # Option 1: rename file to new name - in place
         os.rename(filename, new_name)
 
@@ -56,7 +58,7 @@ def demo_walk():
         print("\tand files:", filenames)
         print("(Current working directory is: {})".format(os.getcwd()))
 
-        # TODO: add a loop to rename the files
+
         try:
             os.mkdir('temp')
         except FileExistsError:
